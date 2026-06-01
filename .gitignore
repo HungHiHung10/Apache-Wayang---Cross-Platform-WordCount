@@ -1,0 +1,53 @@
+# ==========================================
+# Maven / Build
+# ==========================================
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# ==========================================
+# IDEs and Editors
+# ==========================================
+.idea/
+*.iml
+*.iws
+*.ipr
+.classpath
+.project
+.settings/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# ==========================================
+# Python / Plotting
+# ==========================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+
+# ==========================================
+# Wayang / Benchmark Local Logs & Outputs
+# ==========================================
+.log/
+temp/
+output/
+benchmark_result.png
+
+# Keep folders but ignore contents (except keep .gitkeep if any)
+# We will keep input files since they are demo datasets
+# But if there are huge inputs, we can ignore them.
+# input/100MB.txt  # Uncomment if 100MB.txt is too large for GitHub
+
+# ==========================================
+# OS temporary files
+# ==========================================
+.DS_Store
+Thumbs.db
