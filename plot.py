@@ -7,8 +7,8 @@ from matplotlib.lines import Line2D
 # =========================================================================
 # 1. CONFIGURATION & SETUP
 # =========================================================================
-CSV_FILE_PATH = 'results.csv'
-OUTPUT_IMAGE = 'benchmark_result.png'
+CSV_FILE_PATH = 'result/results.csv'
+OUTPUT_IMAGE = 'result/benchmark_result.png'
 
 PLATFORM_COLORS = {
     'JVM': '#FFC0CB',      # Light Pink

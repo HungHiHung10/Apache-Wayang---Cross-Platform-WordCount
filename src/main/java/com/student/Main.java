@@ -385,7 +385,8 @@ public class Main {
         WayangContext sparkContext  = new WayangContext(baseConfig).withPlugin(org.apache.wayang.spark.Spark.basicPlugin());
 
         // Reset CSV file
-        File resultsCsvFile = new File("/mnt/a/ApacheWayang/wayang/results.csv");
+        File resultsCsvFile = new File("/mnt/a/ApacheWayang/wayang/result/results.csv");
+        resultsCsvFile.getParentFile().mkdirs();
         try (java.io.PrintWriter writer = new java.io.PrintWriter(new java.io.FileOutputStream(resultsCsvFile, false))) {
             writer.println("Dataset,JVM,Flink,Spark,Wayang,Choice");
         } catch (Exception e) {

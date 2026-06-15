@@ -32,13 +32,39 @@ Tài liệu này trình bày phân tích chuyên sâu về cơ sở lý thuyết
 
 Dự án này bao gồm một chương trình Benchmark tác vụ `WordCount` để minh họa khả năng tự động chọn nền tảng tối ưu (JVM, Flink, Spark) của Apache Wayang dựa trên kích thước dữ liệu.
 
-### 1. Yêu cầu hệ thống (Prerequisites)
-Để chạy được mã nguồn và trực quan hóa kết quả, hệ thống của bạn cần cài đặt:
-- **Java 8** hoặc mới hơn (Wayang core được tối ưu trên Java 8/11).
-- **Apache Maven** (để quản lý dependencies và build project).
-- **Python 3.x** cùng thư viện `matplotlib`, `numpy` (để vẽ biểu đồ).
-- **Hệ điều hành**: Khuyến nghị Linux, macOS, hoặc Windows Subsystem for Linux (WSL).
+### 1. Cài đặt Môi trường (End-to-End Setup)
 
+Để triển khai dự án này từ đầu, vui lòng thực hiện tuần tự các bước sau (Khuyến nghị sử dụng hệ điều hành Linux, macOS, hoặc WSL trên Windows):
+
+**Bước 1.1: Cài đặt Java và Maven**
+Apache Wayang được tối ưu hóa trên nền tảng Java 8 hoặc Java 11.
+```bash
+# Cài đặt OpenJDK 11 và Maven (Ví dụ trên Ubuntu/WSL)
+sudo apt update
+sudo apt install openjdk-11-jdk maven -y
+
+# Kiểm tra lại phiên bản
+java -version
+mvn -version
+```
+
+**Bước 1.2: Cài đặt Hệ thống tệp phân tán Hadoop (HDFS)**
+Do dự án sử dụng các nền tảng phân tán (Spark/Flink) đòi hỏi đọc/ghi dữ liệu trung gian, việc thiết lập HDFS (chế độ Pseudo-Distributed hoặc Cluster) là bắt buộc.
+* Yêu cầu: Đã cấu hình biến môi trường `HADOOP_HOME` và thiết lập SSH không cần mật khẩu (passwordless SSH) tới `localhost`.
+
+**Bước 1.3: Cài đặt Python và Thư viện Vẽ biểu đồ**
+Môi trường Python 3 được dùng để trực quan hóa kết quả đầu ra của CBO.
+```bash
+sudo apt install python3 python3-pip -y
+pip3 install matplotlib numpy
+```
+
+**Bước 1.4: Tải mã nguồn**
+Sao chép mã nguồn của dự án về máy:
+```bash
+git clone <đường_dẫn_repo_của_bạn>
+cd ApacheWayang
+```
 ### 2. Cài đặt và Chạy Benchmark
 
 **Bắt buộc:** Khởi động hệ thống HDFS trước khi thực thi benchmark để đảm bảo luồng đọc/ghi dữ liệu phân tán hoạt động bình thường:
@@ -62,10 +88,10 @@ Chạy kịch bản thực thi tích hợp sẵn:
 mvn clean compile
 mvn exec:exec -Dexec.executable="java" -Dexec.args="-cp %classpath com.student.Main"
 ```
-Kết quả sau khi chạy sẽ được xuất ra file `results.csv` chứa thông số thời gian thực thi của từng nền tảng và lựa chọn tối ưu của Wayang.
+Kết quả sau khi chạy sẽ được xuất ra file `result/results.csv` chứa thông số thời gian thực thi của từng nền tảng và lựa chọn tối ưu của Wayang.
 
 ### 3. Trực quan hóa kết quả (Plotting)
-Sau khi có file `results.csv`, bạn có thể tạo biểu đồ so sánh tự động bằng Python script.
+Sau khi có file `result/results.csv`, bạn có thể tạo biểu đồ so sánh tự động bằng Python script.
 
 Cài đặt các thư viện cần thiết (nếu chưa có):
 ```bash
@@ -76,7 +102,9 @@ Chạy script vẽ biểu đồ:
 ```bash
 python plot.py
 ```
-Hệ thống sẽ tạo ra tệp hình ảnh **`benchmark_result.png`** thể hiện trực quan thời gian chạy của JVM, Flink, Spark và điểm sao (⭐) đánh dấu lựa chọn của Wayang CBO.
+Hệ thống sẽ tạo ra tệp hình ảnh **`result/benchmark_result.png`** thể hiện trực quan thời gian chạy của JVM, Flink, Spark và điểm sao (⭐) đánh dấu lựa chọn của Wayang CBO.
+
+![Benchmark Result](result/benchmark_result.png)
 
 ---
 

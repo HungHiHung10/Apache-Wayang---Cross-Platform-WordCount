@@ -1,4 +1,0 @@
-Dataset,JVM,Flink,Spark,Wayang,Choice
-1MB,248,185,7613,2514,JVM
-10MB,1588,64,3362,2029,Flink
-100MB,6340,73,3011,3713,Spark
