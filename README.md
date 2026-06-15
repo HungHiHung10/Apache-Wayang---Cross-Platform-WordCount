@@ -9,26 +9,26 @@
 
 ---
 
-## 📖 Tóm tắt (Abstract)
+## Tóm tắt (Abstract)
 **Apache Wayang** (tiền thân là Rheem) đại diện cho một bước tiến quan trọng trong kiến trúc xử lý dữ liệu liên nền tảng (cross-platform data processing). Đặc tính cốt lõi tạo nên sự linh hoạt của hệ thống này nằm ở khả năng **Thích ứng nền tảng động (Platform Adaptation)** được điều phối bởi **Bộ tối ưu hóa dựa trên chi phí (Cost-Based Optimizer - CBO)**. 
 
 Tài liệu này trình bày phân tích chuyên sâu về cơ sở lý thuyết của CBO, cơ chế ra quyết định định tuyến thực thi, và cung cấp hướng dẫn thực thi (benchmark) nhằm minh họa cách CBO đưa ra lựa chọn tối ưu.
 
 ---
 
-## 📋 Mục lục
-- [🚀 Hướng dẫn Thực thi (Execution Guide)](#-hướng-dẫn-thực-thi-execution-guide)
-  - [1. Yêu cầu hệ thống (Prerequisites)](#1-yêu-cầu-hệ-thống-prerequisites)
+## Mục lục
+- [Hướng dẫn Thực thi (Execution Guide)](#hướng-dẫn-thực-thi-execution-guide)
+  - [1. Cài đặt Môi trường (End-to-End Setup)](#1-cài-đặt-môi-trường-end-to-end-setup)
   - [2. Cài đặt và Chạy Benchmark](#2-cài-đặt-và-chạy-benchmark)
   - [3. Trực quan hóa kết quả (Plotting)](#3-trực-quan-hóa-kết-quả-plotting)
-- [🧠 Cơ sở lý thuyết của CBO](#-cơ-sở-lý-thuyết-của-cbo)
-- [⚙️ Quy trình Tối ưu hóa Thuật toán](#️-quy-trình-tối-ưu-hóa-thuật-toán)
-- [📊 Phân tích Thực nghiệm Hành vi Định tuyến](#-phân-tích-thực-nghiệm-hành-vi-định-tuyến)
-- [🎯 Kết luận](#-kết-luận)
+- [Cơ sở lý thuyết của CBO](#cơ-sở-lý-thuyết-của-cbo)
+- [Quy trình Tối ưu hóa Thuật toán](#quy-trình-tối-ưu-hóa-thuật-toán)
+- [Phân tích Thực nghiệm Hành vi Định tuyến](#phân-tích-thực-nghiệm-hành-vi-định-tuyến)
+- [Kết luận](#kết-luận)
 
 ---
 
-## 🚀 Hướng dẫn Thực thi (Execution Guide)
+## Hướng dẫn Thực thi (Execution Guide)
 
 Dự án này bao gồm một chương trình Benchmark tác vụ `WordCount` để minh họa khả năng tự động chọn nền tảng tối ưu (JVM, Flink, Spark) của Apache Wayang dựa trên kích thước dữ liệu.
 
@@ -102,13 +102,13 @@ Chạy script vẽ biểu đồ:
 ```bash
 python plot.py
 ```
-Hệ thống sẽ tạo ra tệp hình ảnh **`result/benchmark_result.png`** thể hiện trực quan thời gian chạy của JVM, Flink, Spark và điểm sao (⭐) đánh dấu lựa chọn của Wayang CBO.
+Hệ thống sẽ tạo ra tệp hình ảnh **`result/benchmark_result.png`** thể hiện trực quan thời gian chạy của JVM, Flink, Spark và điểm sao (*) đánh dấu lựa chọn của Wayang CBO.
 
 ![Benchmark Result](result/benchmark_result.png)
 
 ---
 
-## 🧠 Cơ sở lý thuyết của CBO
+## Cơ sở lý thuyết của CBO
 
 Trong kiến trúc hệ thống của Apache Wayang, CBO đóng vai trò là bộ điều phối trung tâm. Khi một quy trình xử lý dữ liệu được thiết lập (ví dụ: chuỗi toán tử `read -> flatMap -> map -> reduce -> write`), quy trình này tồn tại dưới dạng một **Đồ thị có hướng không chu trình (DAG)** mang tính trừu tượng, hay còn gọi là **Kế hoạch Logic (Logical Plan)**.
 
@@ -154,7 +154,7 @@ graph TD
 
 ---
 
-## ⚙️ Quy trình Tối ưu hóa Thuật toán
+## Quy trình Tối ưu hóa Thuật toán
 
 Quy trình ra quyết định của CBO được mô hình hóa qua ba giai đoạn định lượng tuyến tính:
 
@@ -177,7 +177,7 @@ Dựa trên kết quả định lượng, CBO tiến hành đối sánh tổng c
 
 ---
 
-## 📊 Phân tích Thực nghiệm Hành vi Định tuyến
+## Phân tích Thực nghiệm Hành vi Định tuyến
 
 Áp dụng lý thuyết trên vào thực nghiệm đánh giá hiệu năng (benchmark) tác vụ `WordCount` với kích thước tập dữ liệu đầu vào biến thiên từ 1MB đến 100MB, cơ chế suy luận của CBO được phản ánh qua các chỉ định định tuyến sau:
 
@@ -201,6 +201,6 @@ Do tác vụ `WordCount` mang cấu trúc tuyến tính khép kín, CBO ước l
 
 ---
 
-## 🎯 Kết luận
+## Kết luận
 
 Hệ thống Cost-Based Optimizer của Apache Wayang không hoạt động như một thuật toán đo lường tốc độ bề mặt tĩnh. Bằng cách thiết lập mô hình toán học cân bằng giữa độ trễ khởi tạo (Startup Overhead), năng lực xử lý tải (Scalability Bottleneck) và rào cản băng thông I/O giữa các hệ thống, Wayang cung cấp một cơ chế định tuyến thông minh. Kiến trúc này đảm bảo khả năng linh hoạt và tối ưu hóa tài nguyên triệt để cho các luồng xử lý dữ liệu phức tạp trong thực tiễn công nghiệp.
