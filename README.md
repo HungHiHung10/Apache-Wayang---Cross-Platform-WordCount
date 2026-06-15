@@ -1,5 +1,4 @@
 <div align="center">
-  <img src="https://wayang.apache.org/assets/img/logo/logo_400x160.png" alt="Apache Wayang Logo" width="300" />
   <h1>Apache Wayang: Cost-Based Optimizer & Platform Adaptation</h1>
   
   [![Java](https://img.shields.io/badge/Java-8%2B-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://java.com)
