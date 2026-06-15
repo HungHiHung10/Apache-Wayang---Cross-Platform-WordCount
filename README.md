@@ -9,7 +9,7 @@
 
 ---
 
-## Tóm tắt (Abstract)
+## Tóm tắt
 **Apache Wayang** (tiền thân là Rheem) đại diện cho một bước tiến quan trọng trong kiến trúc xử lý dữ liệu liên nền tảng (cross-platform data processing). Đặc tính cốt lõi tạo nên sự linh hoạt của hệ thống này nằm ở khả năng **Thích ứng nền tảng động (Platform Adaptation)** được điều phối bởi **Bộ tối ưu hóa dựa trên chi phí (Cost-Based Optimizer - CBO)**. 
 
 Tài liệu này trình bày phân tích chuyên sâu về cơ sở lý thuyết của CBO, cơ chế ra quyết định định tuyến thực thi, và cung cấp hướng dẫn thực thi (benchmark) nhằm minh họa cách CBO đưa ra lựa chọn tối ưu.
@@ -28,7 +28,7 @@ Tài liệu này trình bày phân tích chuyên sâu về cơ sở lý thuyết
 
 ---
 
-## Hướng dẫn Thực thi (Execution Guide)
+## Hướng dẫn Thực thi
 
 Dự án này bao gồm một chương trình Benchmark tác vụ `WordCount` để minh họa khả năng tự động chọn nền tảng tối ưu (JVM, Flink, Spark) của Apache Wayang dựa trên kích thước dữ liệu.
 
