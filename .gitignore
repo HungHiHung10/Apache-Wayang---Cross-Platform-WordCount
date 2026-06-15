@@ -39,8 +39,6 @@ __pycache__/
 .log/
 temp/
 output/
-benchmark_result.png
-
 # Keep folders but ignore contents (except keep .gitkeep if any)
 # We will keep input files since they are demo datasets
 # But if there are huge inputs, we can ignore them.
